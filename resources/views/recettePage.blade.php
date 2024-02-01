@@ -12,10 +12,10 @@
 
 <body>
     <ul class="flex bg-gray-200 rounded-md p-1.5 overflow-hidden font-sans max-h-[10vh]">
-        <a href="" class="flex items-center">
+        <a href="/recettePage" class="flex items-center">
             <li><img src="{{ asset('image/foodlogo.png') }}" alt="" class="w-[800px]"></li>
         </a>
-        <a href=""
+        <a href="/recettePage"
             class="text-gray-600 hover:text-white duration-300	flex items-center justify-center hover:bg-[#B03000] rounded-md font-bold w-full  text-base py-2 px-4 cursor-pointer">
             <li>Recipes</li>
         </a>
@@ -47,8 +47,14 @@
                 easy-to-follow cooking adventures that celebrate flavor and fun. Join our food-loving community and
                 discover a world of culinary delights waiting to be savored and shared. Let's cook up something amazing
                 together!</p>
+                <form action="/search" method="get" class="bg-white text-black mt-6 flex px-1 py-1 rounded-full border border-[#B03000] overflow-hidden max-w-md mx-auto font-[sans-serif]">
+                    <input type='search' name ="search" placeholder='Search Something...' class="w-full outline-none bg-white pl-4 text-sm" />
+                    <button type='submit'
+                      class="bg-[#B03000] hover:bg-[#B04000] transition-all text-white text-sm rounded-full px-5 py-2.5">Search</button>
+                </form>
 
         </div>
+      
     </div>
 
     <div class="bg-white font-[sans-serif] my-8">
@@ -62,18 +68,18 @@
                 @foreach ($recipes as $recipe)
                     <div
                         class="bg-white cursor-pointer rounded overflow-hidden shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] relative group">
-                        <img src="https://readymadeui.com/Imagination.webp" alt="Blog Post 1"
+                        <img src="{{ asset('storage/image/' . $recipe['image']) }}" alt="{{ $recipe['Title'] }}"
                             class="w-full h-96 object-cover" />
                         <div class="p-6 absolute bottom-0 left-0 right-0 bg-white opacity-90">
-                            {{-- <span class="text-sm block text-gray-600 mb-2">10 FEB 2023 | BY JOHN DOE</span> --}}
                             <h3 class="text-xl font-bold text-[#333]">{{ $recipe['Title'] }}</h3>
                             <div
-                                class="h-0 overflow-hidden group-hover:h-16 group-hover:mt-4 transition-all duration-300">
-                                <p class="text-gray-600 text-sm">{{ $recipe['Desc'] }}</p>
+                                class="h-0 overflow-hidden group-hover:h-full group-hover:mt-4 transition-all duration-300">
+                                <p class="text-gray-600 text-sm">{!! $recipe['Desc'] !!}</p>
                             </div>
                         </div>
                     </div>
                 @endforeach
+
 
             </div>
         </div>

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamps();
             $table->sltring('Title');
             $table->string('Desc');
-            $table->string('author');
+            $table->string('image');
             $table->foreignId('user_id')->constrained();
         });
     }

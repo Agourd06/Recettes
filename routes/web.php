@@ -34,6 +34,9 @@ Route::get('/add-page', function () {
 
 
 
+
+
+
 Route::get('/recettePage', function () {
     $recipes = Recipe::all();
     return view('recettePage', ['recipes' => $recipes]);
@@ -55,6 +58,8 @@ Route::get('/UserRecipe', function () {
 Route::post('/register', [UserController::class,'register']);
 Route::post('/logout', [UserController::class,'logout']);
 Route::post('/login', [UserController::class,'login']);
+Route::get('/search', [RecetteController::class, 'search'])->name('search');
+
 
 
 // Recipe creation 
