@@ -48,6 +48,12 @@
                         <input name="password" type="password"  class="w-full bg-transparent text-sm border-b border-gray-300 focus:border-blue-500 px-2 py-3 outline-none" placeholder="Enter password" />
 
                     </div>
+                    <ul class="mt-2 px-4 grid sm:grid-cols-2 gap-y-1 gap-x-6 w-max list-disc">
+                        <li class="text-xs text-orange-500">minimum 3 characters</li>
+                        <li class="text-xs text-orange-500">maximum 3 characters</li>
+                        <li class="text-xs text-orange-500">one special characters</li>
+                        <li class="text-xs text-orange-500">one number</li>
+                      </ul>
                 </div>
 
                 <div class="mt-12">
