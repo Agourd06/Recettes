@@ -46,10 +46,10 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16 max-md:max-w-lg mx-auto">
                 @foreach ($recipes as $recipe)
+
                     <div
                         class="bg-white cursor-pointer rounded overflow-hidden shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] relative group">
-                        <img src="{{ asset('storage/image/' . $recipe['image']) }}" alt="{{ $recipe['Title'] }}"
-                            class="w-full h-96 object-cover" />
+                        <img src="{{ asset('storage/image/' . $recipe['image']) }}" alt="{{ $recipe['Title'] }}" class="w-full h-96 object-cover" />
                         <div class="p-6 absolute bottom-0 left-0 right-0 bg-white opacity-90">
                             <h3 class="text-xl font-bold text-[#333]">{{ $recipe['Title'] }}</h3>
                             <div

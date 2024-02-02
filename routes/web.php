@@ -33,12 +33,14 @@ route::put('/editing/{recipe}', [RecetteController::class, 'ConfirmeEdit']);
 // Delete recipe
 route::delete('/deleting/{recipe}', [RecetteController::class, 'DeletePost']);
 
+//show all recipes
 Route::get('/recettePage', function () {
     $recipes = Recipe::all();
     
     return view('recettePage', ['recipes' => $recipes]);
 })->name('recettePage');
 
+//show user recipes
 Route::get('/UserRecipe', function () {
     if (Auth::check()) {
         $recipes = auth()->user()->userRecipes()->latest()->get();
@@ -48,8 +50,11 @@ Route::get('/UserRecipe', function () {
     }
 })->name('UserRecipe');
 
+//search
+
 Route::get('/search', [RecetteController::class, 'search'])->name('search');
 
+//authentification
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/logout', [UserController::class, 'logout']);
 Route::post('/login', [UserController::class, 'login']);
