@@ -66,12 +66,12 @@ class RecetteController extends Controller
          'Title' => 'required',
          'Desc' => 'required',
      ], [
-         'image.required' => 'The image is required.',
-         'image.image' => 'The file must be an image.',
-         'image.mimes' => 'The image must be of type: jpeg, png, jpg, gif, or webp.',
-         'image.max' => 'The image must not be larger than 2048 kilobytes.',
-         'Title.required' => 'The Title is required.',
-         'Desc.required' => 'The description is required.',
+        'Title.required' => 'The Title is required.',
+        'Desc.required' => 'The description is required.',
+        'image.required' => 'The image is required.',
+        'image.image' => 'The file must be an image.',
+        'image.mimes' => 'The image must be of type: jpeg, png, jpg, gif, or webp.',
+        'image.max' => 'The image must not be larger than 2048 kilobytes.',
      ]);
    
        $data = $request->all();

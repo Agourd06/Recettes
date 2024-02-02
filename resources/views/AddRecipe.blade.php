@@ -27,13 +27,14 @@
             <form action="/New-recipe" method="post" enctype="multipart/form-data"
                 class="md:col-span-2 w-full py-6 px-6 sm:px-16">
                 @csrf
+               
+                <div class="mb-6">
+                    <h3 class="text-2xl font-bold">Create an Recipe</h3>
+                </div>
                 <div class="text-red-500 text-[20px]">
                     @if ($errors->any())
                         <div>{{ $errors->first() }}</div>
                     @endif
-                </div>
-                <div class="mb-6">
-                    <h3 class="text-2xl font-bold">Create an Recipe</h3>
                 </div>
                 <div class="space-y-5">
                     <div>

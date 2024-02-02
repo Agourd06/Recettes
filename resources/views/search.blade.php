@@ -53,7 +53,7 @@
                             <h3 class="text-xl font-bold text-[#333]">{{ $recipe['Title'] }}</h3>
                             <div
                                 class="h-0 overflow-hidden group-hover:h-full group-hover:mt-4 transition-all duration-300">
-                                <p class="text-gray-600 text-sm">{!! $recipe['Desc'] !!}</p>
+                                <p class="text-gray-600 text-sm">{!! nl2br($recipe['Desc']) !!}</p>
                             </div>
                         </div>
                     </div>
