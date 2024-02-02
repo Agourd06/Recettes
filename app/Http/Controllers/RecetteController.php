@@ -15,7 +15,7 @@ class RecetteController extends Controller
 
       $recipes = Recipe::where('Title', 'like', '%' . $query . '%')->get();
 
-      return view('search', ['recipes' => $recipes]);
+      return view('search', ['recipes' => $recipes, 'search' => $query]);
    }
 
    public function DeletePost(Recipe $recipe)
