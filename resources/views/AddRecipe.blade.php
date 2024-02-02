@@ -11,29 +11,7 @@
 </head>
 
 <body>
-    <ul class="flex bg-gray-200 rounded-md p-1.5 overflow-hidden font-sans max-h-[10vh]">
-        <a href="/recettePage" class="flex items-center">
-            <li><img src="{{ asset('image/foodlogo.png') }}" alt="" class="w-[800px]"></li>
-        </a>
-        <a href="/recettePage"
-            class="text-gray-600 hover:text-white duration-300	flex items-center justify-center hover:bg-[#B03000] rounded-md font-bold w-full  text-base py-2 px-4 cursor-pointer">
-            <li>Recipes</li>
-        </a>
-        <a href="/UserRecipe"
-            class="text-gray-600 hover:text-white duration-300	flex items-center justify-center hover:bg-[#B03000] rounded-md font-bold w-full  text-base py-2 px-4 cursor-pointer">
-            <li>My Recipes</li>
-        </a>
-        <a href="/add-page"
-            class="text-gray-600 hover:text-white duration-300	flex items-center justify-center hover:bg-[#B03000] rounded-md font-bold w-full  text-base py-2 px-4 cursor-pointer">
-            <li>Add Recipes</li>
-        </a>
-        <form action="/logout" method="POST"
-            class="text-gray-600 hover:text-white duration-300	flex items-center justify-center hover:bg-[#B03000] rounded-md font-bold w-full  text-base py-2 px-4 cursor-pointer">
-            @csrf
-            <button>Log Out</button>
-
-        </form>
-    </ul>
+  @include('layouts/navbar')
   
     <div class="font-[sans-serif] text-gray-800 bg-white max-w-4xl flex items-center mx-auto md:h-[90vh] p-4">
         <div
@@ -49,7 +27,11 @@
             <form action="/New-recipe" method="post" enctype="multipart/form-data"
                 class="md:col-span-2 w-full py-6 px-6 sm:px-16">
                 @csrf
-
+                <div class="text-red-500 text-[20px]">
+                    @if ($errors->any())
+                        <div>{{ $errors->first() }}</div>
+                    @endif
+                </div>
                 <div class="mb-6">
                     <h3 class="text-2xl font-bold">Create an Recipe</h3>
                 </div>
@@ -57,7 +39,7 @@
                     <div>
                         <label class="text-sm mb-2 block">Recipe Title</label>
                         <div class="relative flex items-center">
-                            <input name="Title" type="text" required
+                            <input name="Title" type="text" 
                                 class="bg-white border border-gray-300 w-full text-sm px-4 py-2.5 rounded-md outline-none"
                                 placeholder="Enter Title" />
                         </div>

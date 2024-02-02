@@ -1,77 +1,55 @@
 <?php
 
-use App\Models\Recipe;
-use App\Models\User;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RecetteController;
+use App\Http\Middleware\RedirectIfAuthenticated;
+use App\Models\Recipe;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
-
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-Route::get('/', function () {
+Route::middleware([RedirectIfAuthenticated::class])->get('/', function () {
     return view('index');
 })->name('home');
-
 
 Route::get('/page-register', function () {
     return view('pageRegister');
 })->name('page.register');
 
+// Recipe creation
 Route::get('/add-page', function () {
-    return view('AddRecipe');
+    if (Auth::check()) {
+        return view('AddRecipe');
+    } else {
+        return redirect()->route('home');
+    }
 })->name('add.page');
 
+route::post('/New-recipe', [RecetteController::class, 'CreateRecipe']);
 
+// Recipe edit
+route::get('/editing/{recipe}', [RecetteController::class, 'EditedRecipe']);
+route::put('/editing/{recipe}', [RecetteController::class, 'ConfirmeEdit']);
 
-
-
+// Delete recipe
+route::delete('/deleting/{recipe}', [RecetteController::class, 'DeletePost']);
 
 Route::get('/recettePage', function () {
     $recipes = Recipe::all();
+    
     return view('recettePage', ['recipes' => $recipes]);
 })->name('recettePage');
 
-
 Route::get('/UserRecipe', function () {
-    $recipes = auth()->user()->userRecipes()->latest()->get();
-    return view('UserRecipe', ['recipes' => $recipes]);
+    if (Auth::check()) {
+        $recipes = auth()->user()->userRecipes()->latest()->get();
+        return view('UserRecipe', ['recipes' => $recipes]);
+    } else {
+        return redirect()->route('home');
+    }
 })->name('UserRecipe');
 
-
-
-
-
-
-
-
-Route::post('/register', [UserController::class,'register']);
-Route::post('/logout', [UserController::class,'logout']);
-Route::post('/login', [UserController::class,'login']);
 Route::get('/search', [RecetteController::class, 'search'])->name('search');
 
-
-
-// Recipe creation 
-
-route::post('/New-recipe' , [RecetteController::class , 'CreateRecipe']);
-// Recipe edit
-
-
-route::get('/editing/{recipe}' , [RecetteController::class , 'EditedRecipe']);
-route::put('/editing/{recipe}' , [RecetteController::class , 'ConfirmeEdit']);
-
-
-//delete recipe
-
-route::delete('/deleting/{recipe}' , [RecetteController::class , 'DeletePost']);
+Route::post('/register', [UserController::class, 'register']);
+Route::post('/logout', [UserController::class, 'logout']);
+Route::post('/login', [UserController::class, 'login']);

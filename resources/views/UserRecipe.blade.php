@@ -11,29 +11,9 @@
 </head>
 
 <body>
-    <ul class="flex bg-gray-200 rounded-md p-1.5 overflow-hidden font-sans max-h-[10vh]">
-        <a href="/recettePage" class="flex items-center">
-            <li><img src="{{ asset('image/foodlogo.png') }}" alt="" class="w-[800px]"></li>
-        </a>
-        <a href="/recettePage"
-            class="text-gray-600 hover:text-white duration-300	flex items-center justify-center hover:bg-[#B03000] rounded-md font-bold w-full  text-base py-2 px-4 cursor-pointer">
-            <li>Recipes</li>
-        </a>
-        <a href="/recettePage"
-            class="text-gray-600 hover:text-white duration-300	flex items-center justify-center hover:bg-[#B03000] rounded-md font-bold w-full  text-base py-2 px-4 cursor-pointer">
-            <li>All Recipes</li>
-        </a>
-        <a href="/add-page"
-            class="text-gray-600 hover:text-white duration-300	flex items-center justify-center hover:bg-[#B03000] rounded-md font-bold w-full  text-base py-2 px-4 cursor-pointer">
-            <li>Add Recipes</li>
-        </a>
-        <form action="/logout" method="POST"
-            class="text-gray-600 hover:text-white duration-300	flex items-center justify-center hover:bg-[#B03000] rounded-md font-bold w-full  text-base py-2 px-4 cursor-pointer">
-            @csrf
-            <button>Log Out</button>
+    @auth
+    @include('layouts/navbar')
 
-        </form>
-    </ul>
     <div class="bg-white font-[sans-serif] my-8">
         <div class="max-w-7xl mx-auto">
             <div class="text-center">
@@ -42,7 +22,7 @@
                     My RECIPES</h2>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16 max-md:max-w-lg mx-auto">
-                @foreach ($recipes as $myrecipe)
+                @forelse ($recipes as $myrecipe)
                     <div
                         class="bg-white cursor-pointer rounded overflow-hidden shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] relative group">
 
@@ -52,11 +32,12 @@
 
                         <div class="p-6 absolute  bottom-0 left-0 right-0 bg-white opacity-90">
                             <div class="flex justify-rounded gap-24">
-                                <div class="max-w-[90px] text-wrap">
-                                    <h3 class="text-xl font-bold text-[#333] max-w-full ">{{ $myrecipe['Title'] }}</h3></div>
+                                <div class="">
+                                    <h3 class="text-[18px] font-bold text-[#333]  ">{{ $myrecipe['Title'] }}</h3>
+                                </div>
                                 <div class="flex">
                                     <a href="/editing/{{ $myrecipe->id }}"
-                                        class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+                                        class="text-gray-900 bg-white max-h-[42px] border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
                                         <button>Editing</button>
                                     </a>
                                     <form action="/deleting/{{ $myrecipe->id }}" method="post">
@@ -70,15 +51,60 @@
                             <div
                                 class="h-0 overflow-hidden group-hover:h-full group-hover:mt-4 transition-all duration-300">
                                 <p class="text-gray-600 text-sm">{!! $myrecipe['Desc'] !!}</p>
+
                             </div>
                         </div>
 
 
                     </div>
-                @endforeach
+                @empty
+                    <div class="w-full text-right">
+                        <p class="text-[20px] text-gray-600">No recipes found</p>
+                    </div>
+                @endforelse
             </div>
         </div>
     </div>
+    @else
+    <div class="bg-white font-[sans-serif] my-8 text-center">
+        <h2 class="text-3xl font-extrabold text-[#333] mb-6">Access Denied</h2>
+        <p class="text-base text-center text-gray-600">You need to be logged in to view this page.</p>
+        <a href="/login" class="text-[#B03000] font-bold">Login</a>
+    </div>
+@endauth
+<footer class="bg-gray-200 py-12 px-8 font-[sans-serif]">
+    <div class="md:flex md:items-center ">
+      <div class="md:w-76 max-md:text-center">
+        <a href='javascript:void(0)' class="max-md:mx-auto"><img src="{{ asset('image/foodlogo.png') }}"
+          alt="logo" class='w-48 inline-block' /></a>
+      </div>
+      <div class="max-md:mt-8 w-full">
+        <div class="grid grid-cols-1 lg:grid-cols-3 items-center mb-8">
+          <ul class="col-span-2 md:flex max-lg:justify-center max-md:text-center md:space-x-4 max-md:space-y-4">
+            <li>
+              <a href='' class='hover:text-[#B03000] text-[#B05000] text-[15px]'>Recipes</a>
+            </li>
+            <li>
+              <a href='/UserRecipe' class='hover:text-[#B03000] text-[#B05000] text-[15px]'>Profile</a>
+            </li>
+            <li>
+              <a href='' class='hover:text-[#B03000] text-[#B05000] text-[15px]'>Add recipe</a>
+            </li>
+            <li>
+              <a href='/' class='hover:text-[#B03000] text-[#B05000] text-[15px]'>log out</a>
+            </li>
+            
+          </ul>
+          
+        </div>
+        <div class="border-t text-center border-[#6b5f5f] pt-8 mt-8">
+            <div class="text-center flex items-center justify-center mt-12 ">
+            <p class='text-sm text-[#B03000]  '>Copyright © 2024 foodHouse All Rights Reserved.</p>
+          
+        </div>
+      </div>
+    </div>
+  </footer>
 </body>
 
 </html>

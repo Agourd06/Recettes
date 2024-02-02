@@ -19,27 +19,33 @@
         <div class="relative -mt-40 m-4">
             <form class="bg-white max-w-xl w-full mx-auto shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] p-6 rounded-md" action="/register" method="post">
             @csrf
+           
                 <div class="mb-12">
                     <h3 class="text-3xl font-extrabold text-center">Create an account</h3>
+                </div>
+                <div class="text-red-500 text-[20px] w-full text-center">
+                    @if ($errors->any())
+                        <div>{{ $errors->first() }}</div>
+                    @endif
                 </div>
                 <div>
                     <label class="text-xs block mb-2">Full Name</label>
                     <div class="relative flex items-center">
-                        <input name="name" type="text" required class="w-full bg-transparent text-sm border-b border-gray-300 focus:border-blue-500 px-2 py-3 outline-none" placeholder="Enter name" />
+                        <input name="name" type="text"  class="w-full bg-transparent text-sm border-b border-gray-300 focus:border-blue-500 px-2 py-3 outline-none" placeholder="Enter name" />
 
                     </div>
                 </div>
                 <div class="mt-10">
                     <label class="text-xs block mb-2">Email</label>
                     <div class="relative flex items-center">
-                        <input name="email" type="text" required class="w-full bg-transparent text-sm border-b border-gray-300 focus:border-blue-500 px-2 py-3 outline-none" placeholder="Enter email" />
+                        <input name="email" type="text"  class="w-full bg-transparent text-sm border-b border-gray-300 focus:border-blue-500 px-2 py-3 outline-none" placeholder="Enter email" />
 
                     </div>
                 </div>
                 <div class="mt-10">
                     <label class="text-xs block mb-2">Password</label>
                     <div class="relative flex items-center">
-                        <input name="password" type="password" required class="w-full bg-transparent text-sm border-b border-gray-300 focus:border-blue-500 px-2 py-3 outline-none" placeholder="Enter password" />
+                        <input name="password" type="password"  class="w-full bg-transparent text-sm border-b border-gray-300 focus:border-blue-500 px-2 py-3 outline-none" placeholder="Enter password" />
 
                     </div>
                 </div>

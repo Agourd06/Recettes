@@ -11,29 +11,7 @@
 </head>
 
 <body>
-    <ul class="flex bg-gray-200 rounded-md p-1.5 overflow-hidden font-sans max-h-[10vh]">
-        <a href="/recettePage" class="flex items-center">
-            <li><img src="{{ asset('image/foodlogo.png') }}" alt="" class="w-[800px]"></li>
-        </a>
-        <a href="/recettePage"
-            class="text-gray-600 hover:text-white duration-300	flex items-center justify-center hover:bg-[#B03000] rounded-md font-bold w-full  text-base py-2 px-4 cursor-pointer">
-            <li>Recipes</li>
-        </a>
-        <a href="/UserRecipe"
-            class="text-gray-600 hover:text-white duration-300	flex items-center justify-center hover:bg-[#B03000] rounded-md font-bold w-full  text-base py-2 px-4 cursor-pointer">
-            <li>My Recipes</li>
-        </a>
-        <a href="/add-page"
-            class="text-gray-600 hover:text-white duration-300	flex items-center justify-center hover:bg-[#B03000] rounded-md font-bold w-full  text-base py-2 px-4 cursor-pointer">
-            <li>Add Recipes</li>
-        </a>
-        <form action="/logout" method="POST"
-            class="text-gray-600 hover:text-white duration-300	flex items-center justify-center hover:bg-[#B03000] rounded-md font-bold w-full  text-base py-2 px-4 cursor-pointer">
-            @csrf
-            <button>Log Out</button>
-
-        </form>
-    </ul>
+    @include('layouts/navbarlog')
 
     <div
         class="relative font-[sans-serif] before:absolute before:w-full before:h-full before:inset-0 before:bg-black before:opacity-50 before:z-10">
@@ -47,14 +25,16 @@
                 easy-to-follow cooking adventures that celebrate flavor and fun. Join our food-loving community and
                 discover a world of culinary delights waiting to be savored and shared. Let's cook up something amazing
                 together!</p>
-                <form action="/search" method="get" class="bg-white text-black mt-6 flex px-1 py-1 rounded-full border border-[#B03000] overflow-hidden max-w-md mx-auto font-[sans-serif]">
-                    <input type='search' name ="search" placeholder='Search Something...' class="w-full outline-none bg-white pl-4 text-sm" />
-                    <button type='submit'
-                      class="bg-[#B03000] hover:bg-[#B04000] transition-all text-white text-sm rounded-full px-5 py-2.5">Search</button>
-                </form>
+            <form action="/search" method="get"
+                class="bg-white text-black mt-6 flex px-1 py-1 rounded-full border border-[#B03000] overflow-hidden max-w-md mx-auto font-[sans-serif]">
+                <input type='search' name ="search" placeholder='Search Something...'
+                    class="w-full outline-none bg-white pl-4 text-sm" />
+                <button type='submit'
+                    class="bg-[#B03000] hover:bg-[#B04000] transition-all text-white text-sm rounded-full px-5 py-2.5">Search</button>
+            </form>
 
         </div>
-      
+
     </div>
 
     <div class="bg-white font-[sans-serif] my-8">
@@ -84,6 +64,40 @@
             </div>
         </div>
     </div>
+    <footer class="bg-gray-200 py-12 px-8 font-[sans-serif]">
+        <div class="md:flex md:items-center ">
+            <div class="md:w-76 max-md:text-center">
+                <a href='javascript:void(0)' class="max-md:mx-auto"><img src="{{ asset('image/foodlogo.png') }}"
+                        alt="logo" class='w-48 inline-block' /></a>
+            </div>
+            <div class="max-md:mt-8 w-full">
+                <div class="grid grid-cols-1 lg:grid-cols-3 items-center mb-8">
+                    <ul
+                        class="col-span-2 md:flex max-lg:justify-center max-md:text-center md:space-x-4 max-md:space-y-4">
+                        <li>
+                            <a href='' class='hover:text-[#B03000] text-[#B05000] text-[15px]'>Recipes</a>
+                        </li>
+                        <li>
+                            <a href='/UserRecipe' class='hover:text-[#B03000] text-[#B05000] text-[15px]'>Profile</a>
+                        </li>
+                        <li>
+                            <a href='' class='hover:text-[#B03000] text-[#B05000] text-[15px]'>Add recipe</a>
+                        </li>
+                        <li>
+                            <a href='/' class='hover:text-[#B03000] text-[#B05000] text-[15px]'>log out</a>
+                        </li>
+
+                    </ul>
+
+                </div>
+                <div class="border-t text-center border-[#6b5f5f] pt-8 mt-8">
+                    <div class="text-center flex items-center justify-center mt-12 ">
+                        <p class='text-sm text-[#B03000]  '>Copyright © 2024 foodHouse All Rights Reserved.</p>
+
+                    </div>
+                </div>
+            </div>
+    </footer>
 </body>
 
 </html>

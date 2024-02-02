@@ -11,19 +11,25 @@
 
 <body>
 
-    <div class="font-[sans-serif] text-[#333] max-w-7xl mx-auto max-h-screen overflow-none">
-        <div class="grid md:grid-cols-2 items-center gap-8 h-[70vh]">
+    <div class="font-[sans-serif] text-[#333] max-w-7xl mx-auto  max-h-screen overflow-none">
+        <div class="grid md:grid-cols-2 items-center gap-8 h-[70vh] mb-6">
             <form action="/login" method="post" class="max-w-lg max-md:mx-auto w-full p-6">
                 @csrf
                 <div class="mb-10">
                     <h3 class="text-4xl font-extrabold">Sign in</h3>
-                    <p class="text-sm mt-6">Immerse yourself in a hassle-free login journey with our intuitively
-                        designed login form. Effortlessly access your account.</p>
+                  
                 </div>
+                <div class="text-red-500 text-[20px] w-full text-center">
+                    @if ($errors->any())
+                        <div>{{ $errors->first() }}</div>
+                    @endif
+                </div>
+               
+
                 <div>
                     <label class="text-[15px] mb-3 block">Username</label>
                     <div class="relative flex items-center">
-                        <input name="logname" type="text" required
+                        <input name="logname" type="text" 
                             class="w-full text-sm bg-gray-100 px-4 py-4 rounded-md outline-blue-600"
                             placeholder="Username" />
 
@@ -32,7 +38,7 @@
                 <div class="mt-6">
                     <label class="text-[15px] mb-3 block">Password</label>
                     <div class="relative flex items-center">
-                        <input name="logpassword" type="password" required
+                        <input name="logpassword" type="password" 
                             class="w-full text-sm bg-gray-100 px-4 py-4 rounded-md outline-blue-600"
                             placeholder="Enter password" />
                     </div>
