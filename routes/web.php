@@ -35,7 +35,7 @@ route::delete('/deleting/{recipe}', [RecetteController::class, 'DeletePost']);
 
 //show all recipes
 Route::get('/recettePage', function () {
-    $recipes = Recipe::all();
+    $recipes = Recipe::latest()->get();
     
     return view('recettePage', ['recipes' => $recipes]);
 })->name('recettePage');
